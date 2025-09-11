@@ -74,11 +74,11 @@
                     <option value="AUD">AUD</option>
                 </select>
                 <div class="result" id="result"></div>
-                <button onclick="convert()">Convert</button>
+                <button id="calculateBtn">Convert</button>
             </div>
         </div>
         <script>
-            function convert() {
+            document.getElementById('calculateBtn').addEventListener('click', () => {
                 const HUFtoUSD = 0.003;
                 let currency = document.getElementById('currency').value;
                 let rates = {
@@ -98,9 +98,25 @@
                     return;
                 }
                 let result = amount * HUFtoUSD * rates[currency];
+                //
+                localStorage.setItem('amount', amount);
+                localStorage.setItem('currency', currency);
+                localStorage.setItem('result', result);
+                //
                 document.getElementById('result').innerText = `Converted Amount: ${result.toFixed(
                     2,
                 )} ${currency})`;
+            });
+            if (
+                localStorage.getItem('amount') &&
+                localStorage.getItem('currency') &&
+                localStorage.getItem('result')
+            ) {
+                document.getElementById('amount').value = localStorage.getItem('amount');
+                document.getElementById('currency').value = localStorage.getItem('currency');
+                document.getElementById('result').innerText = `Converted Amount: ${parseFloat(
+                    localStorage.getItem('result'),
+                ).toFixed(2)} ${localStorage.getItem('currency')}`;
             }
         </script>
     </body>

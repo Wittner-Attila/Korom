@@ -85,13 +85,13 @@
                 <option value="%">%</option>
             </select>
             <input type="number" id="secondNumber" value="0" />
-            <button onclick="calculate()">Calculate</button>
+            <button id="calculateBtn">Calculate</button>
             <p id="result"></p>
         </div>
         <script>
             let operation = '';
 
-            const calculate = () => {
+            document.getElementById('calculateBtn').addEventListener('click', () => {
                 let firstNumber = parseFloat(document.getElementById('firstNumber').value);
                 let secondNumber = parseFloat(document.getElementById('secondNumber').value);
                 let result = 0;
@@ -125,7 +125,7 @@
                 document.getElementById(
                     'result',
                 ).innerText = `Result of (${firstNumber} ${operation} ${secondNumber}): ${result}`;
-            };
+            });
         </script>
     </body>
 </html>

@@ -84,21 +84,42 @@
             <h2>Temperature Exchanger</h2>
             <p>Write the temperature in °C below</p>
             <input type="number" id="celsius" value="0" />
-            <button onclick="calculate()">Calculate</button>
+            <button id="calculateBtn">Calculate</button>
             <p id="fahrenheit"></p>
             <p id="kelvin"></p>
         </div>
         <script>
-            const calculate = () => {
+            document.getElementById('calculateBtn').addEventListener('click', () => {
                 const celsius = parseInt(document.getElementById('celsius').value) || 0;
-                console.log(celsius);
                 const fahrenheit = celsius * 1.8 + 32;
-                document.getElementById(
-                    'fahrenheit',
-                ).textContent = `${celsius}°C = ${fahrenheit}°F`;
                 const kelvin = parseFloat(celsius) + 273.15;
-                document.getElementById('kelvin').textContent = `${celsius}°C = ${kelvin} K`;
-            };
+                //
+                document.getElementById('fahrenheit').textContent = `${celsius.toFixed(
+                    2,
+                )}°C = ${fahrenheit.toFixed(2)}°F`;
+                document.getElementById('kelvin').textContent = `${celsius.toFixed(
+                    2,
+                )}°C = ${kelvin.toFixed(2)} K`;
+                //
+                localStorage.setItem('input', celsius);
+                localStorage.setItem('outF', fahrenheit);
+                localStorage.setItem('outK', kelvin);
+            });
+
+            if (
+                localStorage.getItem('input') &&
+                localStorage.getItem('outF') &&
+                localStorage.getItem('outK')
+            ) {
+                document.getElementById('celsius').value = localStorage.getItem('input').toFixed(2);
+                document.getElementById('fahrenheit').textContent = localStorage
+                    .getItem('outF')
+                    .toFixed(2);
+                document.getElementById('kelvin').textContent = localStorage
+                    .getItem('outK')
+                    .toFixed(2);
+                return;
+            }
         </script>
     </body>
 </html>
