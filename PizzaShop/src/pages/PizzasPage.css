@@ -1,0 +1,16 @@
+.pizza {
+    width: fit-content;
+    margin: auto;
+    cursor: pointer;
+}
+.pizza-title {
+    text-align: center;
+}
+.pizza-image {
+    width: 200px;
+}
+button {
+    min-width: 100px;
+    margin: 10px;
+    font-weight: 700;
+}
