@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 import type { Pizza } from '../types/Pizza';
 import '../index.css';
 import './PizzaPage.css';
-import apiClient, { BACKEND_URL } from '../api/apiClient';
+import apiClient from '../api/apiClient';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import GenerateCard from './components/GenerateCard';
 
 const PizzaPage = () => {
     const navigate = useNavigate();
@@ -28,33 +29,7 @@ const PizzaPage = () => {
             .catch(() => toast.error('Failed to delete pizza'));
     };
 
-    return (
-        <>
-            {!pizza ? (
-                <h1>Pizza Not Found</h1>
-            ) : (
-                <>
-                    <button onClick={() => navigate('/pizzas')}>Back</button>
-                    <h2 className="pizza-name">
-                        {pizza.nev} - {pizza.ar} Ft
-                    </h2>
-                    <img
-                        className="pizza-image"
-                        src={`${BACKEND_URL}/kepek/${pizza.imageUrl}`}
-                        alt={pizza.imageUrl.replace('.png', '')}
-                        title={pizza.imageUrl.replace('.png', '')}
-                    />
-                    <br />
-                    <button className="edit" onClick={() => navigate(`/edit/${id}`)}>
-                        Edit
-                    </button>{' '}
-                    <button className="delete" onClick={() => deletePizza()}>
-                        Delete
-                    </button>
-                </>
-            )}
-        </>
-    );
+    return <>{!pizza ? <h1>Pizza Not Found</h1> : <>{GenerateCard(pizza)}</>}</>;
 };
 
 export default PizzaPage;
