@@ -4,6 +4,7 @@ import '../index.css';
 import './PizzaPage.css';
 import apiClient from '../api/apiClient';
 import type { Pizza } from '../types/Pizza';
+import { toast } from 'react-toastify';
 
 const EditPizza = () => {
     const navigate = useNavigate();
@@ -22,7 +23,7 @@ const EditPizza = () => {
                 setPrice(response.data.ar);
                 setImageUrl(response.data.imageUrl);
             })
-            .catch((result) => console.error(result));
+            .catch(() => toast.error('Failed to get pizza data'));
     }, []);
 
     const editPizza = () => {
@@ -35,11 +36,11 @@ const EditPizza = () => {
 
         apiClient
             .put(`/pizzak/${id}`, pizza)
-            .then((response) => {
-                alert(response.statusText);
+            .then(() => {
+                toast.success('Successfully edited pizza');
                 navigate('/pizzas');
             })
-            .catch((result) => console.error(result));
+            .catch(() => toast.error('Failed to update pizza'));
     };
 
     return (

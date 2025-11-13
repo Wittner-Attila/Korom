@@ -4,6 +4,7 @@ import '../index.css';
 import './PizzasPage.css';
 import apiClient, { BACKEND_URL } from '../api/apiClient';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const PizzasPage = () => {
     const [pizzas, setPizzas] = useState<Pizza[]>([]);
@@ -13,7 +14,7 @@ const PizzasPage = () => {
         apiClient
             .get('/pizzak')
             .then((response) => setPizzas(response.data))
-            .catch((result) => console.error(result));
+            .catch(() => toast.error('Failed to get pizza'));
     }, []);
 
     return (

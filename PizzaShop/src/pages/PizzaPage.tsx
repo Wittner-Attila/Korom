@@ -4,6 +4,7 @@ import '../index.css';
 import './PizzaPage.css';
 import apiClient, { BACKEND_URL } from '../api/apiClient';
 import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const PizzaPage = () => {
     const navigate = useNavigate();
@@ -14,17 +15,17 @@ const PizzaPage = () => {
         apiClient
             .get(`/pizzak/${id}`)
             .then((response) => setPizza(response.data))
-            .catch((result) => console.error(result));
+            .catch(() => toast.error('Failed to get pizza'));
     }, []);
 
     const deletePizza = () => {
         apiClient
             .delete(`/pizzak/${id}`)
-            .then((response) => {
-                alert(response.statusText);
+            .then(() => {
+                toast.success('Successful deletion');
                 navigate('/pizzas');
             })
-            .catch((result) => console.error(result));
+            .catch(() => toast.error('Failed to delete pizza'));
     };
 
     return (

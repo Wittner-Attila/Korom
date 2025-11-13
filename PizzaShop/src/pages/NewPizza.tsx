@@ -4,6 +4,7 @@ import '../index.css';
 import './PizzaPage.css';
 import apiClient from '../api/apiClient';
 import type { Pizza } from '../types/Pizza';
+import { toast } from 'react-toastify';
 
 const NewPizza = () => {
     const navigate = useNavigate();
@@ -21,11 +22,11 @@ const NewPizza = () => {
         };
         apiClient
             .post('/pizzak', pizza)
-            .then((response) => {
-                alert(response.statusText);
+            .then(() => {
+                toast.success('Successfully saved pizza');
                 navigate('/pizzas');
             })
-            .catch((result) => console.error(result));
+            .catch(() => toast.error('Failed to save pizza'));
     };
 
     return (
