@@ -1,0 +1,49 @@
+.Create {
+    margin: auto;
+}
+.Create.base {
+    text-align: center;
+    color-scheme: light dark;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #5f5f5f;
+    width: 20vw;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+.Create .body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.Create .title,
+.Create .description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.Create .buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+.Create .button:first-child {
+    background-color: green;
+    border-color: green;
+    font-size: 2rem;
+}
+.Create .button:last-child {
+    background-color: red;
+    border-color: red;
+    font-size: 2rem;
+}
+.Create input,
+.Create textarea {
+    text-align: center;
+    border-radius: 10px;
+    resize: none;
+}

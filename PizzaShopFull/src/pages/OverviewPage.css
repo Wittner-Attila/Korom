@@ -1,0 +1,22 @@
+body {
+    color-scheme: light dark;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #242424;
+}
+.Overview .card-container {
+    display: flex;
+    gap: 20px;
+    flex: auto;
+    flex-wrap: wrap;
+}
+.Overview .add-new {
+    background-color: green;
+    width: 20vw;
+    height: 20vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10rem;
+    color: white;
+    cursor: pointer;
+}
