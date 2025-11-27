@@ -1,4 +1,4 @@
-import { faClose, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faClose, faEdit, faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type React from 'react';
 import { Button, Card, CardBody, CardText, CardTitle, Image } from 'react-bootstrap';
@@ -10,10 +10,11 @@ type PizzaCardProps = {
     pizza: Pizza;
     onDelete: () => void;
     onEdit: () => void;
+    addToCart: (id: number) => void;
 };
 
 const PizzaCard: React.FC<PizzaCardProps> = (props) => {
-    const { pizza, onDelete, onEdit } = props;
+    const { pizza, onDelete, onEdit, addToCart } = props;
 
     return (
         <Card className="Card base">
@@ -27,11 +28,11 @@ const PizzaCard: React.FC<PizzaCardProps> = (props) => {
                     <Button onClick={onEdit} className="button">
                         <FontAwesomeIcon icon={faEdit} />
                     </Button>
-                    {/*
-                            <Button className="button">
-                                <FontAwesomeIcon icon={faShoppingBasket} />
-                            </Button>
-                                */}
+
+                    <Button onClick={() => addToCart(pizza.id!)} className="button">
+                        <FontAwesomeIcon icon={faShoppingBasket} />
+                    </Button>
+
                     <Button onClick={onDelete} className="button">
                         <FontAwesomeIcon icon={faClose} />
                     </Button>

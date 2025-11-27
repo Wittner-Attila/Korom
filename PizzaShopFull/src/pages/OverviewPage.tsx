@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 
 const OverviewPage: React.FC = () => {
     const [pizzas, setPizzas] = useState<Pizza[]>([]);
+    const [cart, setCart] = useState<number[]>(JSON.parse(localStorage.getItem('cart') ?? '[]'));
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -18,6 +19,8 @@ const OverviewPage: React.FC = () => {
             .then((result) => setPizzas([...result.data].reverse()))
             .catch(() => toast.error('Error getting pizzas'));
     }, []);
+
+    useEffect(() => localStorage.setItem('cart', JSON.stringify(cart)), [cart]);
 
     const removePizza = (pizza: Pizza) => {
         apiClient
@@ -43,6 +46,10 @@ const OverviewPage: React.FC = () => {
                                 pizza={pizza}
                                 onEdit={() => navigate(`/edit-pizza/${pizza.id}`)}
                                 onDelete={() => removePizza(pizza)}
+                                addToCart={(id) => {
+                                    toast.success('Pizza added');
+                                    setCart([...cart, Number(id)]);
+                                }}
                             />
                         ))}
                     </>

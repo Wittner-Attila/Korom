@@ -7,6 +7,7 @@ import OverviewPage from './pages/OverviewPage';
 import CreatePizzaPage from './pages/CreatePizzaPage';
 import EditPizzaPage from './pages/EditPizzaPage';
 import { Bounce, ToastContainer } from 'react-toastify';
+import CartPage from './pages/CartPage';
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
@@ -15,6 +16,7 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="/" element={<OverviewPage />} />
                 <Route path="/new-pizza" element={<CreatePizzaPage />} />
                 <Route path="/edit-pizza/:id" element={<EditPizzaPage />} />
+                <Route path="/cart" element={<CartPage />} />
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
         </BrowserRouter>
